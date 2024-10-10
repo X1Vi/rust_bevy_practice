@@ -31,8 +31,8 @@ pub fn zoom_in_orthographic_projection(
 ) {
     for mut orthographic_projection in query.iter_mut() {
         // Adjust the scaling mode with a zoom-in effect based on the delta time
-        let zoom_factor = 1.0 + time.delta_seconds();
+        // let zoom_factor: f32 = 1.0 + time.delta_seconds();
         orthographic_projection.scale = 0.5;
-        println!("zoom factor -> {}", zoom_factor);
+        // println!("zoom factor -> {}", zoom_factor);
     }
 }

@@ -38,6 +38,8 @@ pub fn player_movement(
             transform.translation += direction * player.speed * time.delta_seconds(); // Accumulate movement
         }
         
+        transform.translation.x += player.speed * time.delta_seconds();
+
         // Set player direction to zero if no keys are pressed
         player.direction = direction; // Store the current direction (will be Vec3::ZERO if no keys pressed)
     
