@@ -56,7 +56,7 @@ pub fn spawn_obstacle(
 
                 commands.spawn(SpriteBundle {
                     texture: asset_server.load("Kenny/Tiles/tile_0040.png"),
-                    transform: Transform::from_xyz(player_position.translation.x + SPAWN_DISTANCE_X_RIGHT, player_position.translation.y + rng.gen_range(50.0..window.height()), 0.0),
+                    transform: Transform::from_xyz(player_position.translation.x + SPAWN_DISTANCE_X_RIGHT, rng.gen_range(100.0..(window.height() - 100.0)), 0.0),
                     ..Default::default()
                 })
                 .insert(Obstacle {timer : Timer::new(Duration::from_secs(DE_SPAWN_TIME), TimerMode::Once), is_timer_started:false})
