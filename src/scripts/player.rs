@@ -45,3 +45,10 @@ pub fn player_movement(
     
     }
 }
+
+pub fn lock_player_rotation(mut query: Query<&mut Transform, With<Player>>) {
+    for mut transform in query.iter_mut() {
+        // Lock the rotation (e.g., no rotation)
+        transform.rotation = Quat::IDENTITY; // Resets rotation to zero
+    }
+}

@@ -1,6 +1,6 @@
 use bevy::{ecs::query, log::tracing_subscriber::fmt::time, prelude::*, render::view::window, transform::commands, window::{PrimaryWindow, WindowResized}};
-use bevy_rapier2d::{na::U64, prelude::Collider};
-use std::{slice::Windows, time::Duration};
+use bevy_rapier2d::prelude::*;
+use std::time::Duration;
 use rand::Rng;
 use super::player::Player;
 
@@ -59,9 +59,11 @@ pub fn spawn_obstacle(
                     transform: Transform::from_xyz(player_position.translation.x + SPAWN_DISTANCE_X_RIGHT, rng.gen_range(100.0..(window.height() - 100.0)), 0.0),
                     ..Default::default()
                 })
+                .insert((RigidBody::Fixed, GlobalTransform::default()))
                 .insert(Obstacle {timer : Timer::new(Duration::from_secs(DE_SPAWN_TIME), TimerMode::Once), is_timer_started:false})
-                .insert(Collider::capsule(Vec2::new(0.0, 0.0), Vec2::new(16.0, 16.0), 1.0));
-            }
+                .insert(Collider::capsule(Vec2::new(0.0, 0.0), Vec2::new(0.0, 4.0), 8.0))
+                .insert(ActiveCollisionTypes::default() | ActiveCollisionTypes::KINEMATIC_STATIC);
+                }
             }
 
         spawn_timer.0.reset();
